@@ -12,14 +12,11 @@ def train_model(file_name,):
     
     select_best_features(features, target)
     best_features = ['p9', 'p13', 'p3', 'p5', 'p7']
-    features_train, features_test, target_train, target_test = train_test_split(features[best_features], 
-                                                                                target,
-                                                                                test_size=.25,
-                                                                                random_state=21)
+    features = features[best_features]
 
-    select_best_estimator(features_train, target_train,)
-    n_estimators = 60
-    model = make_model(features_train, target_train, n_estimators)
+    select_best_estimator(features, target)
+    n_estimators = 55
+    model = make_model(features, target, n_estimators)
 
     return model, best_features
 
