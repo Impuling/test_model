@@ -6,6 +6,7 @@ def from_excel(file_name,):
     data = pd.read_excel(file_name)
     header = data.columns
     header = pd.Series(header[0].split(','))
+    header[48] = 't28'
     
     value = data.values
     value_len = len(value[0][0].split(','))
@@ -15,6 +16,7 @@ def from_excel(file_name,):
             value_array[i, j] = t[0].split(',')[j]
             
     data = pd.DataFrame(value_array, columns=header).set_index([''])
+    data = data.drop('ID', axis=1).astype(np.float)
     
     return data
 
@@ -42,6 +44,6 @@ def make_feature(features, target,):
                 if corr.iloc[i][j] > 0.8:
                     if j not in depended_val:
                         depended_val.append(j)
-    best = f.drop(f.columns[depended_val], axis=1)
+    final = f.drop(f.columns[depended_val], axis=1)
 
-    return best
+    return final
