@@ -6,7 +6,7 @@ def from_excel(file_name,):
     data = pd.read_excel(file_name)
     header = data.columns
     header = pd.Series(header[0].split(','))
-    header[48] = 't28'
+    header[47] = 't28'
     
     value = data.values
     value_len = len(value[0][0].split(','))
